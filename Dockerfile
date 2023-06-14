@@ -19,8 +19,7 @@ COPY src src
 RUN microdnf install findutils
 
 # Run the Gradle build inside the container
-RUN chmod +x gradlew && \
-    ./gradlew clean jar
+RUN ./gradlew clean build
 
 # Use openjdk:17 as the base image for the final runtime image
 FROM openjdk:17
