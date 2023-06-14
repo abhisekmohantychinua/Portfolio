@@ -1,0 +1,30 @@
+spring:
+  data:
+    mongodb:
+      uri: ${URI}
+      username: ${USERNAME}
+      password: ${PASSWORD}
+      database: ${DATABASE}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${DEV_MAIL}
+    password: ${GMAIL}
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+static:
+  data:
+    facebook-profile: https://www.facebook.com/abhisek.mohanty.79069/
+    linkedin-profile: https://www.linkedin.com/in/abhisek-mohanty-3a2241235/
+    github-profile: https://github.com/abhisekmohantychinua
+    admin-mail: ${MY_MAIL}
+    dev-mail: ${DEV_MAIL}
+
