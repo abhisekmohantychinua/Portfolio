@@ -17,13 +17,11 @@ public class SecurityConfig {
         http
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> {
-                    auth
-                            .requestMatchers("/auth/**", "/actuator/**")
-                            .authenticated()
-                            .anyRequest()
-                            .permitAll();
-                })
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/**", "/actuator/**")
+                        .authenticated()
+                        .anyRequest()
+                        .permitAll())
                 .formLogin(Customizer.withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"));
 
