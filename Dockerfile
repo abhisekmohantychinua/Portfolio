@@ -8,6 +8,6 @@ COPY    .env ./src/main/resources/
 COPY    gradlew.bat .
 COPY    src src
 RUN     ./gradlew clean build --no-daemon
-COPY    ./build/libs/Portfolio-0.0.1-SNAPSHOT.jar App.jar
+COPY    ./build/libs/*.jar App.jar
 EXPOSE  8080
 ENTRYPOINT  ["java","-jar","App.jar"]
