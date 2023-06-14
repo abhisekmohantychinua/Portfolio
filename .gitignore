@@ -1,10 +1,8 @@
 HELP.md
 .gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-!build/libs/Portfolio-0.0.1-SNAPSHOT.jar.jar
+/build/**/
+/build/*
+!/build/libs
 
 ### STS ###
 .apt_generated
