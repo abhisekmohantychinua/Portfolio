@@ -18,6 +18,9 @@ COPY src src
 # Install findutils package
 RUN microdnf install findutils
 
+# Give execute permissions to the gradlew script
+RUN chmod +x gradlew
+
 # Run the Gradle build inside the container
 RUN ./gradlew clean build
 
