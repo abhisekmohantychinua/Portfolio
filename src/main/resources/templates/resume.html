@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+<section>
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Resume</span></h1>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-11 col-xl-9 col-xxl-8">
+                <!-- Experience Section-->
+                <section>
+                    <div class="d-flex align-items-center justify-content-between flex-md-row flex-column mb-4">
+                        <h2 class="text-primary fw-bolder mb-0 mb-md-0">Experience</h2>
+                        <!-- Download resume button-->
+                        <a class="btn btn-primary px-4 py-3 mt-3 mt-md-0" th:href="@{docs/resume.pdf}" download>
+                            <div class="d-inline-block bi bi-download me-2"></div>
+                            Download Resume
+                        </a>
+                    </div>
+                    <div th:if="${experiences.size()==0}">
+                        <h1>No Experiences yet......</h1>
+                    </div>
+                    <div th:unless="${experiences.size()==0}">
+                        <div th:each="experience : ${experiences}">
+                            <!-- Experience Card -->
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-primary fw-bolder mb-2"
+                                                     th:text="${experience.getStart()}+' - '+ ${experience.getEnd()}"></div>
+                                                <div class="small fw-bolder"
+                                                     th:text="${experience.getPosition()}"></div>
+                                                <div class="small text-muted"
+                                                     th:text="${experience.getCompany()}"></div>
+                                                <div class="small text-muted"
+                                                     th:text="${experience.getLocation()}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div th:text="${experience.getDescription()}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </section>
+                <!-- Education Section-->
+                <section>
+                    <h2 class="text-secondary fw-bolder mb-4">Education</h2>
+                    <div th:if="${educations.size()==0}">
+                        <h1>NO Educations yet...</h1>
+                    </div>
+                    <div th:unless="${educations.size()==0}">
+                        <div th:each="education : ${educations}">
+                            <!-- Education Card -->
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                            <div class="bg-light p-4 rounded-4">
+                                                <div class="text-secondary fw-bolder mb-2"
+                                                     th:text="${education.getStart()}+' - '+${education.getEnd()}"></div>
+                                                <div class="mb-2">
+                                                    <div class="small fw-bolder"
+                                                         th:text="${education.getInstitution()}"></div>
+                                                    <div class="small text-muted"
+                                                         th:text="${education.getLocation()}"></div>
+                                                </div>
+                                                <div class="fst-italic">
+                                                    <div class="small text-muted"
+                                                         th:text="${education.getDegree()}"></div>
+                                                    <div class="small text-muted"
+                                                         th:text="${education.getFieldOfStudy()}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div th:text="${education.getDescription()}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- Divider-->
+                <div class="pb-5"></div>
+
+
+                <!-- Skills Section-->
+                <section>
+                    <!-- Skill set Card-->
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <!-- Professional skills list-->
+                            <div class="mb-5">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
+                                        <i class="bi bi-tools"></i></div>
+                                    <h3 class="fw-bolder mb-0"><span
+                                            class="text-gradient d-inline">Professional Skills</span></h3>
+                                </div>
+
+                                <div th:each="row,iterSkills : ${skills}">
+                                    <!-- Row of skill-->
+                                    <div th:classappend="${!iterSkills.last}? 'mb-4':''"
+                                         class="row row-cols-1 row-cols-md-3">
+                                        <div th:each="skill,iterRow : ${row}">
+                                            <!-- Column of Row of skill -->
+                                            <div th:classappend="${iterRow.last} ? 'mb-4 mb-md-0':''" class="col">
+                                                <div th:if="${skill}">
+                                                    <div class="d-flex align-items-center justify-content-center font-weight-bold bg-light rounded-4 p-1 h-100 mb-2"
+                                                         th:text="${skill.name}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Languages list-->
+                            <div class="mb-0">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3">
+                                        <i class="bi bi-code-slash"></i></div>
+                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Languages</span>
+                                    </h3>
+                                </div>
+
+                                <div th:each="row,iterLanguages : ${languages}">
+                                    <!-- Row of skill-->
+                                    <div th:classappend="${!iterLanguages.last}? 'mb-4':''"
+                                         class="row row-cols-1 row-cols-md-3">
+
+                                        <div th:each="language,iterRow : ${row}">
+
+                                            <!-- Column of Row of skill -->
+                                            <div th:classappend="${iterRow.last} ? 'mb-4 mb-md-0':''" class="col">
+                                                <div th:if="${language}">
+                                                    <div class="d-flex align-items-center justify-content-center font-weight-bold bg-light rounded-4 p-1 h-100 mb-2"
+                                                         th:text="${language.name}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
