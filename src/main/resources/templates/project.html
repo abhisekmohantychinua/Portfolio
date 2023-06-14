@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Portfolio | Home</title>
+</head>
+<body>
+<section>
+    <!-- Projects Section-->
+    <section class="py-5">
+        <div class="container px-5 mb-5">
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-11 col-xl-9 col-xxl-8">
+                    <!-- Project Card -->
+
+                    <div th:each="project,iter : ${projects}">
+                        <div th:classappend="${!iter.last}? 'mb-5':''"
+                             class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card-body p-0">
+                                <div class="d-flex align-items-center">
+                                    <div class="p-5">
+                                        <h2 class="fw-bolder">
+                                            <a class="text-gradient" th:href="${project?.getGithubUrl()}"
+                                               target="_blank">
+                                                <i class="bi bi-github"></i>
+                                            </a>
+                                            <span th:text="${project?.getName()}"></span>
+                                        </h2>
+                                        <p th:text="${project?.getDescription()}"></p>
+                                        <div class="row row-cols-1 row-cols-md-5">
+                                            <div th:each="technology,iter : ${project.getTechnologies()}">
+                                                <div th:classappend="${iter.last} ? 'mb-4 mb-md-0':''" class="col my-2">
+                                                    <div class="d-flex align-items-center justify-content-center bg-light rounded-4 p-1 h-100"
+                                                         th:text="${technology}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img th:if="${!project.getImageUrl().isEmpty()}" class="img-fluid d-lg-block d-none" src="" th:src="${project?.getImageUrl()}"
+                                         th:alt="${project?.getName()}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call-to-action section-->
+    <section class="py-5 bg-gradient-primary-to-secondary text-white">
+        <div class="container px-5 my-5">
+            <div class="text-center">
+                <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+                <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" th:href="@{/contact}">Contact me</a>
+            </div>
+        </div>
+    </section>
+</section>
+
+</body>
+</html>
