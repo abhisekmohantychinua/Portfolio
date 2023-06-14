@@ -1,40 +1,13 @@
-# Use openjdk:17 as the base image
-FROM openjdk:17 as builder
-
-# Set the working directory
+FROM    gradle:8-jdk17-alpine
 WORKDIR /app
-
-# Copy the Gradle wrapper files
-COPY gradlew .
-COPY gradle gradle
-
-# Copy the Gradle build files
-COPY build.gradle .
-COPY settings.gradle .
-
-# Copy the source code
-COPY src src
-
-# Install findutils package
-RUN microdnf install findutils
-
-# Give execute permissions to the gradlew script using Bash
-RUN bash -c "chmod +x gradlew"
-
-# Run the Gradle build inside the container using Bash
-RUN bash -c "./gradlew clean build"
-
-# Use openjdk:17 as the base image for the final runtime image
-FROM openjdk:17
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the JAR file from the builder stage
-COPY --from=builder /app/build/libs/Portfolio-0.0.1-SNAPSHOT.jar App.jar
-
-# Expose port 8080
-EXPOSE 8080
-
-# Set the entrypoint to run the application
-ENTRYPOINT ["java", "-jar", "App.jar"]
+COPY    build.gradle .
+COPY    gradlew .
+COPY    settings.gradle .
+COPY    gradle gradle
+COPY    .env ./src/main/resources/
+COPY    gradlew.bat .
+COPY    src src
+RUN     ./gradlew clean build --no-daemon
+COPY    ./build/libs/Portfolio-0.0.1-SNAPSHOT.jar App.jar
+EXPOSE  8080
+ENTRYPOINT  ["java","-jar","App.jar"]
