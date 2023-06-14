@@ -18,11 +18,11 @@ COPY src src
 # Install findutils package
 RUN microdnf install findutils
 
-# Give execute permissions to the gradlew script
-RUN chmod +x gradlew
+# Give execute permissions to the gradlew script using Bash
+RUN bash -c "chmod +x gradlew"
 
-# Run the Gradle build inside the container
-RUN ./gradlew clean build
+# Run the Gradle build inside the container using Bash
+RUN bash -c "./gradlew clean build"
 
 # Use openjdk:17 as the base image for the final runtime image
 FROM openjdk:17
