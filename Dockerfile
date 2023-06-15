@@ -2,6 +2,7 @@ FROM openjdk:17-alpine AS build
 WORKDIR /workspace/app
 COPY . /workspace/app
 COPY .env /workspace/app/src/main/resources/.env
+RUN chmod +x gradlew 
 RUN ./gradlew clean build
 
 FROM openjdk:17-alpine
