@@ -43,3 +43,12 @@ To run
 docker run -p 8080:8080 applicationname
 ```
 
+# PC
+![Screenshot 2023-06-15 114744](https://github.com/abhisekmohantychinua/Portfolio/assets/86331203/feefe39d-a891-4f34-95a0-209cb201b9e2)
+# Tablet
+![Screenshot 2023-06-15 120045](https://github.com/abhisekmohantychinua/Portfolio/assets/86331203/898927fd-44da-4b7d-b8e6-9860fdd1356d)
+# Mobile
+![WhatsApp Image 2023-06-15 at 11 53 23](https://github.com/abhisekmohantychinua/Portfolio/assets/86331203/b4d5f8ff-2bbb-48c0-86a4-c0fedfa384d9)
+
+# Your Feedback Matters
+![4](https://github.com/abhisekmohantychinua/Portfolio/assets/86331203/c496a227-94dd-43c4-b4fd-2cfcbeaa10d3)
