@@ -1,13 +1,12 @@
-FROM    gradle:8-jdk17-alpine
-WORKDIR /app
-COPY    build.gradle .
-COPY    gradlew .
-COPY    settings.gradle .
-COPY    gradle gradle
-COPY    .env ./src/main/resources/
-COPY    gradlew.bat .
-COPY    src src
-RUN     ./gradlew clean build --no-daemon
-COPY    ./build/libs/*.jar App.jar
-EXPOSE  8080
-ENTRYPOINT  ["java","-jar","App.jar"]
+FROM openjdk:17-alpine AS build
+WORKDIR /workspace/app
+COPY . /workspace/app
+COPY .env /workspace/app/src/main/resources/.env
+RUN ./gradlew clean build
+
+FROM openjdk:17-alpine
+VOLUME /tmp
+ARG DEPENDENCY=/workspace/app/build/libs/*-SNAPSHOT.jar
+COPY --from=build ${DEPENDENCY} app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+EXPOSE 8080
