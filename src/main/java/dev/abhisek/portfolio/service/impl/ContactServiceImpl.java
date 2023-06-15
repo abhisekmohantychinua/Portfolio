@@ -30,7 +30,7 @@ public class ContactServiceImpl implements ContactService {
                 .to(contact.getEmail())
                 .subject("Email verification !!!")
                 .messages("Thanks for contacting me. Please verify your email by clicking on the following link:" +
-                        "http://localhost:8080" +
+                        "https://coderabhisek.onrender.com" +
                         "/verify?token=" +
                         contact.getToken())
                 .build());
